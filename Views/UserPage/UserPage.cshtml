@@ -1,0 +1,53 @@
+﻿@model GameX.ViewModel.SignUpViewModel
+@{
+    ViewData["Title"] = "UserPage";
+}
+
+<h2>UserPage  <i class="fas fa-user"></i></h2>
+<br/><br/><br/>
+          <div class="container__userPage">
+              <form asp-controller="UserPage" asp-action="UserPage" method="post">
+                  <input name="UserId" value="@Model.UserId" type="hidden">
+                  <div class="registered">
+
+                      <div class="registered__block">
+                          <label class="registered__block__name" for"">Email:</label>
+                          <input type="email" name="Email" class="registered__block__entry" value="@Model.Email" />
+                      </div>
+
+                      <div class="registered__block">
+                          <label class="registered__block__name" for"">Name:</label>
+                          <input type="text" name="Name" class="registered__block__entry" value="@Model.Name" />
+                      </div>
+
+                      <div class="registered__block">
+                          <label class="registered__block__name" for"">Password:</label>
+                          <input type="password" name="Password" class="registered__block__entry" value="@Model.Password" />
+                      </div>
+
+                      <div class="registered__block">
+                          <label class="registered__block__name" for"">Surname:</label>
+                          <input type="text" name="Surname" class="registered__block__entry" value="@Model.Surname" />
+                      </div>
+
+                      <div class="registered__block">
+                          <label class="registered__block__name" for"">Username:</label>
+                          <input type="text" name="Username" class="registered__block__entry" value="@Model.Username" />
+                      </div>
+
+
+                      <button type="submit" class="button">Zapisz zmiany</button>
+
+                  </div>
+
+
+              </form>
+
+              <div class="avaliableDay registered">
+                  <h4>Dostępne dni</h4>
+                  <img src="~/images/doodle.jpg"/>
+              </div>
+          </div>
+
+
+

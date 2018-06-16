@@ -1,0 +1,388 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> SignInManager
+@inject Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GameX</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/webfonts/fontawesome.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="navigation">
+            <div class="navigation__logo">
+                <a asp-area="" asp-controller="MainPage" asp-action="Index">
+                    <img src="~/images/gamex_logo.png" />
+                </a>
+            </div>
+            <div class="navigation__menuItems">
+                <div class="navigation__menuItemes__item">
+                    <ul class="navigation__menuItemes__item__mainItem">
+                        <li class="navigation__menuItemes__item__mainItem__subMenuItems">
+                            <a asp-area="" asp-controller="Event" asp-action="Index">Wydarzenia</a>
+
+                            <ol class="navigation__menuItemes__item__subMenu">
+                                <li class="navigation__menuItemes__item__subMenu_item"><a asp-area="" asp-controller="Event" asp-action="Add">Dodaj</a></li>
+                            </ol>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation__menuItemes__item"><a>O nas</a></div>
+                <div class="navigation__menuItemes__item"><a>Czat</a></div>
+                <div class="navigation__menuItemes__item"><a>Kontakt</a></div>
+            </div>
+            <div class="navigation__menuLogin">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <form asp-area="" asp-controller="Login" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a class="userpage__button" asp-controller="UserPage" asp-action="UserPage" UserId="d4073c9c-117d-462f-a0d9-9e83de6615b0" title="Manage">Witaj @UserManager.GetUserName(User)!</a>
+                            </li>
+                            <li>
+                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Wyloguj się</button>
+                            </li>
+                        </ul>
+                    </form>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="login-button"><a asp-area="" asp-controller="Login" asp-action="Register">Rejestruj</a></li>
+                        <li><a asp-area="" asp-controller="Login" asp-action="Login">Login</a></li>
+                    </ul>
+                }
+                @*<a asp-area="" asp-controller="Login" asp-action="Login"><i class="fas fa-user"></i></a>*@
+            </div>
+        </nav>
+    </header>
+    <div class="container body-content">
+
+        @RenderBody()
+        <hr />
+
+    </div>
+    <footer class="footerStyle">
+
+        <div class="footerStyle__up">
+
+            <div class="footerStyle__up__note">
+                <h4>O nas</h4>
+                <i class="far fa-address-card"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum rutrum nibh sit amet efficitur. Aliquam erat volutpat. Sed scelerisque orci elit, ut consequat orci semper ut. Fusce ipsum diam, ultrices a egestas nec, auctor euismod elit.</p>
+            </div>
+
+            <div class="footerStyle__up__note">
+                <h4>Kontakt</h4>
+                <i class="far fa-envelope"></i>
+                <p>Praesent non est ut leo fermentum ultricies. Mauris dictum, sapien in rhoncus mattis, felis dui gravida purus, malesuada accumsan mi turpis quis lorem. Praesent aliquet ligula in arcu posuere sagittis. Sed aliquet mauris eu tellus porta vestibulum. Pellentesque tincidunt, odio sed ornare finibus, magna eros posuere leo, vel vestibulum nisi metus at dui. Ut semper ac sem sit amet dapibus. Morbi dapibus dui vel gravida posuere. Mauris a vestibulum arcu, ut commodo enim.</p>
+            </div>
+
+            <div class="footerStyle__up__note">
+                <h4>Współpraca</h4>
+                <i class="far fa-comments"></i>
+                <p>Ut in neque urna. Sed venenatis nisi aliquam nisi gravida elementum id a leo. Mauris rhoncus ante nisl, ut posuere arcu convallis sit amet. Nunc eu euismod tortor, a varius turpis. Phasellus magna leo, pellentesque non malesuada sed, efficitur laoreet tortor. Duis sed elementum tortor, a rutrum mi.</p>
+            </div>
+
+        </div>
+        <div class="footerStyle__down">
+
+            <div class="footerStyle__down__note">
+                <h4>Znajdź nas na mediach społeczznościowych:</h4>
+            </div>
+
+            <div class="footerStyle__down__note">
+                <img src="~/images/facebook_icon.png" />
+                <img src="~/images/google_icon.png" />
+                <img src="~/images/twitter_icon.png" />
+                <img src="~/images/email_icon.png" />
+            </div>
+
+        </div>
+
+    </footer>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
+    @*@section Script{
+            <script type="text/javascript">
+                $(".userpage__button").bind("click", function (){
+                    window.location.replace(`@Url.Action("UserPage")?UserId=d4073c9c-117d-462f-a0d9-9e83de6615b0`);
+
+                }
+
+
+            </script>
+
+
+        }*@
+    <script type="text/javascript">
+        var promise;
+        var marker;
+        var contentStringx = "";
+    var contentString = '<div id="content">' +
+        '<div id="siteNotice">' +
+        '</div>' +
+        '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
+        '<div id="bodyContent">' +
+        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+        'sandstone rock formation in the southern part of the ' +
+        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) ' +
+        'south west of the nearest large town, Alice Springs; 450&#160;km ' +
+        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major ' +
+        'features of the Uluru - Kata Tjuta National Park. Uluru is ' +
+        'sacred to the Pitjantjatjara and Yankunytjatjara, the ' +
+        'Aboriginal people of the area. It has many springs, waterholes, ' +
+        'rock caves and ancient paintings. Uluru is listed as a World ' +
+        'Heritage Site.</p>' +
+        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
+        'https://en.wikipedia.org/w/index.php?title=Uluru</a> ' +
+        '(last visited June 22, 2009).</p>' +
+        '</div>' +
+        '</div>';
+    var map;
+    var geocoder;
+     function initMap() {
+        geocoder = new google.maps.Geocoder();
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+        map = new google.maps.Map(document.getElementById('sportmap'), {
+            center: { lat: 50.33, lng: 21.10 },
+            zoom: 8
+        });
+         marker = new google.maps.Marker({
+            map: map,
+            position: { lat: 50.3422, lng: 21.4043 },
+            title: 'Hello World!'
+        });
+        marker.addListener('click', function () {
+            infowindow.open(map, marker)
+         });
+
+         getAddress();
+        //codeAddress(geocoder, map, "Staszow");
+    }
+
+    function getAddress(promise) {
+        var json;
+
+         $.ajax("@Url.Action("getEventsAddress", "Event")", {
+            dataType: "JSON",
+            type: "GET",
+            contentType: 'application/json'
+        }).done(function (data) {
+
+            json = data.json;
+            //var obj = JSON.parse(data.json);
+            var obj1 = JSON.parse(data.json);
+            for (var i in obj1) {
+                var line = obj1[i];
+                let address = `${line.City} ${line.Street} ${line.HouseNumber}`;
+                //console.log("3");
+                codeAddress(geocoder, map, address, line.EventAdressId, line.Content, line.EventId);
+
+            }
+            })
+
+    }
+
+        function codeAddress(geocoder, map, address, EventAdressId, content, EventId) {
+        //var address = document.getElementById('address').value;
+            geocoder.geocode({ 'address': address }, async function (results, status) {
+            if (status == 'OK') {
+
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+
+                });
+                let res;
+                $.when(getContent(content, EventId, function (location) { res=location})).done(function () {
+                    // the code here will be executed when all four ajax requests resolve.
+                    // a1, a2, a3 and a4 are lists of length 3 containing the response text,
+                    // status, and jqXHR object for each of the four ajax calls respectively.
+                    //console.log(res);
+                    var infowindow = new google.maps.InfoWindow({
+                        content: res
+                    });
+                    marker.addListener('click', function () {
+                        infowindow.open(map, marker)
+                    });
+                    saveEventsCoords(results, EventAdressId);
+
+                });
+
+
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+
+        });
+    }
+
+        function saveEventsCoords(results, EventAdressId) {
+            var lat = results[0].geometry.location.lat();
+            var lng = results[0].geometry.location.lng();
+            $.ajax("@Url.Action("saveEventsCoords", "Event")", {
+                type: "POST",
+                 dataType: "JSON",
+                 data: { lat: lat, lng: lng, EventAdressId: EventAdressId}
+
+        }).done(function (data) {
+
+
+         })
+        };
+
+        function getContent(content, EventId,fn) {
+            var Namex;
+           return $.ajax("@Url.Action("GetContent", "Event")", {
+                type: "GET",
+                dataType: "JSON",
+                data: { EventId: EventId }
+            }).done(function (data) {
+                var info = JSON.parse(data.json);
+                //for (var i in info) {
+                //    let json = info[i];
+                //    console.log(json.Name);
+                //    console.log(info);
+
+                //}
+                //for (var i in info) {
+                //    var line = info[i];
+                //    Namex = `${info.Name}`;
+                //    var Description = `${info.Description}`;
+                //    let Date = `${info.Data}`;
+                //    let Discipline = `${info.Discipline}`;
+                //    let Adress = `${info.Adress}`;
+                //    console.log("3");
+                //    console.log(Namex);
+                //    console.log(Description);
+                //    console.log(Date);
+                //    console.log(Discipline);
+                //console.log(Adress);
+
+                let { Name, Description, Data, Discipline, Address,
+                    EventParticipents: EventParticipents,
+                    ParticipantsCount,
+                    Limit
+
+
+
+                } = info;
+                //console.log(EventParticipents);
+                let Participents ="<br />";
+                let user2 = "Maciej";
+                for (let i in EventParticipents) {
+                    Participents += EventParticipents[i] +"<br />" ;
+
+                }
+
+                fn(contentString = `<div id="content">
+                <div id="siteNotice">
+                    </div>
+                    <h1 id="firstHeading" class="firstHeading">Nazwa ${Name} </h1>
+                    <div id="bodyContent">
+                    <p>${Description}</p>
+                    <p>Data${Data}</p>
+                    <p>Uczestnicy:${Participents}</p>
+                    <p>Limit:${ParticipantsCount}/${Limit}</p>
+                    </div>
+                    </div>`);
+            })
+        }
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvz5H2nTtjRyVQl73DUyBVwVBII0wkrtA&callback=initMap"
+            async defer></script>
+    <script type="text/javascript">
+        $(".fa-play-circle").bind("click", function () {
+            let EventId = ($(this).parent().parent().parent().attr("EventId"));
+            let UserID;
+            $.when(GetCurrentUserID(EventId, function (location) { UserID = location })).done(function () {
+                JoinEvent(UserID,EventId);
+
+            });
+
+
+
+
+        })
+        function GetCurrentUserID(EventID,fn) {
+           return  $.ajax("@Url.Action("GetCurrentUserId","Login")", {
+                 type: "GET",
+                 dataType: "JSON",
+               data: { EventID: EventID}
+
+        }).done(function (data) {
+            fn( data.id);
+
+
+         })
+
+        }
+        function JoinEvent(userID, EventID) {
+
+
+            $.ajax("@Url.Action("Join")", {
+                type: "POST",
+                 dataType: "JSON",
+                data: { EventID: EventID, userID: userID}
+
+        }).done(function (data) {
+            let userID =data.id;
+
+         })
+
+        }
+    $(".fa-edit").bind("click", function () {
+    let EventId = ($(this).parent().parent().attr("EventId"));
+        window.location.replace(`@Url.Action("Edit")?EventId=${EventId}`);
+    })
+
+
+    </script>
+
+    }
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@model GameX.ViewModel.LoginViewModel
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Logowanie";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <div class="col-md-4 registered">
+        <section>
+            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <h4>Zaloguj się swoim kontem w aplikacji!</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger "></div>
+                <div class="form-group registered__block">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control registered__block__entry" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group registered__block">
+                    <label asp-for="Password">Hasło</label>
+                    <input asp-for="Password" class="form-control registered__block__entry" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group registered__block">
+                    <div class="checkbox">
+                        <label asp-for="RememberMe">
+                            <input asp-for="RememberMe" />
+                            @Html.DisplayNameFor(m => m.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group registered__block">
+                    <button type="submit" class="btn btn-default registered__block__button">Zaloguj się</button>
+                </div>
+                <div class="form-group ">
+                    <p>
+                        <a asp-action="ForgotPassword">Zapomniałeś hasła?</a>
+                    </p>
+                    <p>
+                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Zarejestruj się!</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2 registered">
+        <section>
+            <h4>Zaloguj się za pomocą innych kont!</h4>
+            <hr />
+            @{
+                var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+                if (loginProviders.Count == 0)
+                {
+                <div class="otherRegister">
+                    <div class="otherRegister__item">
+                        <i class="fab fa-facebook"></i>
+                        <p>Zaloguj się za pomocą Facebooka</p>
+                    </div>
+                    <div class="otherRegister__item">
+                        <i class="fab fa-google"></i>
+                        <p>Zaloguj się za pomocą konta Google</p>
+                    </div>
+                </div>
+                }
+                else
+                {
+                    <form asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in loginProviders)
+                                {
+                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>

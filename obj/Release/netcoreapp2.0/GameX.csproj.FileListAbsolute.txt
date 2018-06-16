@@ -1,0 +1,11 @@
+C:\Users\Łukasz\Desktop\test\GameX\GameX\bin\Release\netcoreapp2.0\GameX.deps.json
+C:\Users\Łukasz\Desktop\test\GameX\GameX\bin\Release\netcoreapp2.0\GameX.runtimeconfig.json
+C:\Users\Łukasz\Desktop\test\GameX\GameX\bin\Release\netcoreapp2.0\GameX.runtimeconfig.dev.json
+C:\Users\Łukasz\Desktop\test\GameX\GameX\bin\Release\netcoreapp2.0\GameX.dll
+C:\Users\Łukasz\Desktop\test\GameX\GameX\bin\Release\netcoreapp2.0\GameX.pdb
+C:\Users\Łukasz\Desktop\test\GameX\GameX\obj\Release\netcoreapp2.0\GameX.csprojAssemblyReference.cache
+C:\Users\Łukasz\Desktop\test\GameX\GameX\obj\Release\netcoreapp2.0\GameX.csproj.CoreCompileInputs.cache
+C:\Users\Łukasz\Desktop\test\GameX\GameX\obj\Release\netcoreapp2.0\GameX.AssemblyInfoInputs.cache
+C:\Users\Łukasz\Desktop\test\GameX\GameX\obj\Release\netcoreapp2.0\GameX.AssemblyInfo.cs
+C:\Users\Łukasz\Desktop\test\GameX\GameX\obj\Release\netcoreapp2.0\GameX.dll
+C:\Users\Łukasz\Desktop\test\GameX\GameX\obj\Release\netcoreapp2.0\GameX.pdb

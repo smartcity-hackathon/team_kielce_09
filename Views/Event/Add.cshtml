@@ -1,0 +1,134 @@
+﻿@model GameX.ViewModel.EventAddressModel
+@{
+    ViewData["Title"] = "Add";
+
+}
+
+<h2>Dodaj wydarzenie</h2>
+<form asp-controller="Event" asp-action="Add" method="post">
+    <div class="addEvent">
+        <div class="addEvent__block">
+            <label class="addEvent__block__name" for"">Nazwa</label>
+            <input type="text" name="Name" class="input__block__entry" placeholder="Nowy event">
+        </div>
+        <div class="addEvent__block">
+            <label class="addEvent__block__name" for"">Data</label>
+            <input type="datetime-local" name="Date" class="input__block__entry" placeholder="19.06.2018">
+        </div>
+        <div class="addEvent__block">
+            <label class="addEvent__block__name " for"">Opis</label>
+            <textarea name="Description" class="input__block__entry " placeholder="Opis">
+            </textarea>
+        </div>
+        <div class="addEvent__block">
+            <label class="addEvent__block__name" for"">Dyscyplina</label>
+            <select name="DiciplineId" class="input__block__entry selectDiscipline">
+                <option></option>
+                @foreach (var item in Model.Disciplines)
+                {
+
+                    <option value="@item.DieciplineId">@item.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="addEvent__block">
+            <label class="addEvent__block__name" for"">Limit</label>
+            <input type="number" name="Limit" class="input__block__entry" placeholder="10">
+        </div>
+
+        <div class="addEvent__block">
+            <label class="addEvent__block__name" for"">Address</label>
+            <select name="EventAdressId" class="input__block__entry selectAddress">
+                <option></option>
+                @foreach (var item in Model.Address)
+                {
+
+                    <option value="@item.EventAdressId">@item.Street @item.City @item.HouseNumber</option>
+                }
+            </select>
+        </div>
+
+
+        <div class="addEvent__block">
+            <label class="addEvent__block__name" for"">Nie znalazles/as adresu?</label>
+            <button class="input__block__entry " id="addNewAddress" type="button">Dodaj!</button>
+            <button class="input__block__entry hide" id="removeNewAddress" type="button">Wroc</button>
+        </div>
+
+        <div class="address hide">
+            <div class="addEvent__block">
+                <label class="addEvent__block__name " for"">Miasto</label>
+                <input type="text" name="City" class="input__block__entry addr" placeholder="Kielce">
+            </div>
+            <div class="addEvent__block">
+                <label class="addEvent__block__name " for"">Ulica</label>
+                <input type="text" name="Street" class="input__block__entry addr" placeholder="Aleja IX">
+            </div>
+            <div class="addEvent__block">
+                <label class="addEvent__block__name " for"">Numer</label>
+                <input type="text" name="HouseNumber" class="input__block__entry addr" placeholder="15">
+            </div>
+            <div class="addEvent__block">
+                <label class="addEvent__block__name " for"">Kod pocztowy</label>
+                <input type="text" name="PostCode" class="input__block__entry addr" placeholder="16-205">
+            </div>
+
+
+        </div>
+
+        <div class="addEvent__block">
+            <button type="submit" class="addEvent__block__button">Wyslij!</button>
+
+        </div>
+    </div>
+
+</form>
+@section Scripts{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript">
+        // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function () {   
+            $('.selectAddress').select2({
+                placeholder: "Wybierz",
+                allowClear: true
+            });
+            $('.selectDiscipline').select2({
+                placeholder: "Wybierz",
+                allowClear: true
+            });
+           
+        });
+        $("#addNewAddress").bind("click", function () {
+            if ($(".address").hasClass("show")) {
+            
+               
+
+            } else {
+                $("#addNewAddress").addClass("hide");
+                $("#removeNewAddress").removeClass("hide");
+                $(".address").removeClass("hide");
+                $(".address").addClass("show");
+                clearSelect2();
+                $(".selectAddress").attr("disabled", true);
+            }
+         
+            
+        })
+        $("#removeNewAddress").bind("click", function () { 
+            $(".address").removeClass("show");
+            $(".address").addClass("hide");
+            $("#removeNewAddress").addClass("hide");
+            $(".selectAddress").attr("disabled", false);
+            $("#addNewAddress").removeClass("hide");
+            $(".addr").val("");
+        })
+        function clearSelect2() {
+            $(".selectAddress").val(null).trigger('change');
+
+
+        }
+    </script>
+
+}

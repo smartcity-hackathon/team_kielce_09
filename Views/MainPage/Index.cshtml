@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_MainPageLayout";
+}
+<div class="container">
+    <div class="events">
+        <h1 class="events_title title">Nasze wydarzenia</h1>
+        <div class="events__map">
+            @await Component.InvokeAsync("Map")
+
+        </div>
+        <button class="events__button"><a asp-area="" asp-controller="Event">Zobacz wszystkie wydarznenia</a></button>
+    </div>
+
+
+    <div class="pictures">
+
+        <div class="pictures__item">
+            <img src="~/images/picture_1.jpg" />
+        </div>
+
+        <div class="pictures__item">
+            <img src="~/images/picture_2.jpg" />
+        </div>
+
+        <div class="pictures__item">
+            <img src="~/images/picture_3.jpg" />
+        </div>
+
+        <div class="pictures__item">
+            <img src="~/images/picture_4.jpg" />
+        </div>
+
+
+
+    </div>
+    <div class="advantages">
+        <h1 class="title">Dlaczego my?</h1>
+        <div class="advantages__items">
+            <div class="advantages__items__item">
+                <i class="fas fa-user-friends"></i>
+                <h3>Integracja z ludźmi</h3>
+                <p>Integer in metus sit amet odio elementum faucibus. Curabitur hendrerit dui at mi pretium consectetur. Nulla luctus molestie ipsum eu hendrerit. Proin luctus vehicula lacus, tincidunt interdum odio volutpat eget. Vivamus eu eros viverra, facilisis odio nec, porta mi. In nulla lacus, efficitur id faucibus non, tincidunt lobortis nunc. Aliquam erat volutpat. Donec ut convallis eros. Nunc scelerisque consequat neque sed imperdiet. Nam non posuere ante. Curabitur quis aliquam purus. Donec sit amet nunc at neque vehicula pulvinar sit amet non velit. Morbi accumsan eget risus ac ornare.</p>
+            </div>
+
+            <div class="advantages__items__item">
+                <i class="fas fa-handshake"></i>
+                <h3>Twórz zespoły z innymi</h3>
+                <p>Integer in metus sit amet odio elementum faucibus. Curabitur hendrerit dui at mi pretium consectetur. Nulla luctus molestie ipsum eu hendrerit. Proin luctus vehicula lacus, tincidunt interdum odio volutpat eget. Vivamus eu eros viverra, facilisis odio nec, porta mi. In nulla lacus, efficitur id faucibus non, tincidunt lobortis nunc. Aliquam erat volutpat. Donec ut convallis eros. Nunc scelerisque consequat neque sed imperdiet. Nam non posuere ante. Curabitur quis aliquam purus. Donec sit amet nunc at neque vehicula pulvinar sit amet non velit. Morbi accumsan eget risus ac ornare.</p>
+            </div>
+
+            <div class="advantages__items__item">
+                <i class="fas fa-bell"></i>
+                <h3>To co Cię interesuje</h3>
+                <p>Integer in metus sit amet odio elementum faucibus. Curabitur hendrerit dui at mi pretium consectetur. Nulla luctus molestie ipsum eu hendrerit. Proin luctus vehicula lacus, tincidunt interdum odio volutpat eget. Vivamus eu eros viverra, facilisis odio nec, porta mi. In nulla lacus, efficitur id faucibus non, tincidunt lobortis nunc. Aliquam erat volutpat. Donec ut convallis eros. Nunc scelerisque consequat neque sed imperdiet. Nam non posuere ante. Curabitur quis aliquam purus. Donec sit amet nunc at neque vehicula pulvinar sit amet non velit. Morbi accumsan eget risus ac ornare.</p>
+            </div>
+
+            <div class="advantages__items__item">
+                <i class="fas fa-map-pin"></i>
+                <h3>Wszystko w jednym miejscu</h3>
+                <p>Integer in metus sit amet odio elementum faucibus. Curabitur hendrerit dui at mi pretium consectetur. Nulla luctus molestie ipsum eu hendrerit. Proin luctus vehicula lacus, tincidunt interdum odio volutpat eget. Vivamus eu eros viverra, facilisis odio nec, porta mi. In nulla lacus, efficitur id faucibus non, tincidunt lobortis nunc. Aliquam erat volutpat. Donec ut convallis eros. Nunc scelerisque consequat neque sed imperdiet. Nam non posuere ante. Curabitur quis aliquam purus. Donec sit amet nunc at neque vehicula pulvinar sit amet non velit. Morbi accumsan eget risus ac ornare.</p>
+            </div>
+        </div>
+    </div>
+
+    <a class="weatherwidget-io" href="https://forecast7.com/en/50d8720d63/kielce/" data-label_1="KIELCE" data-label_2="POGODA" data-theme="original">KIELCE POGODA</a>
+    <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+    </script>
+
+</div>
